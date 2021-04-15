@@ -1,2 +1,5 @@
 - name: add ssh keys
-  
+  authorized_key:
+    user: david
+    state: present
+    key: public_keys/david
