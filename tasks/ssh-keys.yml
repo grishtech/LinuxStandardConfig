@@ -2,4 +2,6 @@
   authorized_key:
     user: david
     state: present
-    key: public_keys/david
+    key: '{{ item }}'
+    exclusive: True
+  with_file: public_keys/david
