@@ -5,7 +5,9 @@
     owner: root
     group: root
     mode: 644
-  
+
+- name: restart ssh service
   systemd:
     name: sshd
     state: restarted
+    daemon_reloaded: yes
