@@ -1,0 +1,12 @@
+- name: set security defaults
+  copy:
+    src: files/sshd_config
+    dest: /etc/ssh/sshd_config
+    owner: root
+    group: root
+    mode: 644
+  
+  ansible.builtin.systemd:
+    name: sshd
+    deamon_reload: yes
+    state: restarted
