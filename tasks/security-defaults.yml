@@ -5,7 +5,7 @@
     owner: root
     group: root
     mode: 644
-    
+  
   ansible.builtin.systemd:
     name: sshd
     deamon_reload: yes
