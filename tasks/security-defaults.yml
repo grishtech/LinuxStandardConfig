@@ -10,4 +10,4 @@
   systemd:
     name: sshd
     state: restarted
-    daemon_reloaded: yes
+    daemon_reload: yes
