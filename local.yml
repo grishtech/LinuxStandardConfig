@@ -1,0 +1,9 @@
+- hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+  - name: Install Standard Packages
+    apt:
+      name: htop
+      name: neovim
