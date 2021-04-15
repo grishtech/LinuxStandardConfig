@@ -5,5 +5,7 @@
   tasks:
   - name: Install Standard Packages
     apt:
-      name: htop
-      name: neovim
+      name:
+        - htop
+        - neovim
+        - tmux
