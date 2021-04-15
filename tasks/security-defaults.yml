@@ -1,4 +1,4 @@
-- name: set security default
+- name: Set security
   copy:
     src: files/sshd_config
     dest: /etc/ssh/sshd_config
