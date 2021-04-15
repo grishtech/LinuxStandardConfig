@@ -4,3 +4,5 @@
       - htop
       - neovim
       - tmux
+
+# - name: Set unattended updates
