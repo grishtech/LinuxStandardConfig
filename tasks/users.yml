@@ -15,3 +15,11 @@
     owner: root
     group: root
     mode: 0440
+
+- name: copy sudoers_david
+  copy:
+    src: files/sudoers_david
+    dest: /etc/sudoers.d/david
+    owner: root
+    group: root
+    mode: 0440

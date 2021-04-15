@@ -1,4 +1,4 @@
-- name: add ssh keys
+- name: add ssh keys for david
   authorized_key:
     user: david
     state: present
