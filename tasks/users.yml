@@ -2,6 +2,8 @@
   user:
     name: ansible
     system: yes
+
+- name: create david user
   user:
     name: david
     system: no
