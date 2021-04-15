@@ -1,0 +1,6 @@
+- name: Install Standard Packages
+  apt:
+    name:
+      - htop
+      - neovim
+      - tmux
