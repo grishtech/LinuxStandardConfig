@@ -1,1 +1,2 @@
 ansible ALL=(ALL) NOPASSWD: ALL
+david ALL=(ALL) NOPASSWD: ALL
