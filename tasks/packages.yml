@@ -1,5 +1,5 @@
 - name: Install Standard Packages
-  apt:
+  package:
     name:
       - htop
       - neovim
