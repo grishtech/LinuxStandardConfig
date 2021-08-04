@@ -5,3 +5,11 @@
     key: '{{ item }}'
     exclusive: True
   with_file: public_keys/david
+
+- name: add ssh keys for root
+  authorized_key:
+    user: root
+    state: present
+    key: '{{ item }}'
+    exclusive: True
+  with_file: public_keys/root
