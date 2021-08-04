@@ -4,6 +4,7 @@
       - htop
       - neovim
       - tmux
+      - ncdu
   ignore_errors: yes
 
 # - name: Set unattended updates
