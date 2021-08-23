@@ -7,6 +7,8 @@
   user:
     name: david
     system: no
+    state: present
+    shell: /bin/bash
 
 - name: copy sudoers_ansible
   copy:
