@@ -5,6 +5,8 @@
       - neovim
       - tmux
       - ncdu
+      - git
+      - curl
   ignore_errors: yes
 
 # - name: Set unattended updates
