@@ -1,13 +1,8 @@
-- name: Set security
+- name: Set ssh config
   copy:
     src: files/sshd_config
     dest: /etc/ssh/sshd_config
     owner: root
     group: root
     mode: 644
-
-- name: restart ssh service
-  systemd:
-    name: sshd
-    state: restarted
-    daemon_reload: yes
+  notify: restart ssh

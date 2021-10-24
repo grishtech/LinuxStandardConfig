@@ -7,10 +7,13 @@
       package:
         update_cache: yes
       changed_when: False
-  
+
   tasks:
    - include: tasks/packages.yml
    - include: tasks/users.yml
    - include: tasks/ssh-keys.yml
    - include: tasks/security-defaults.yml
    - include: tasks/cron.yml
+  
+  handlers:
+   - include: handlers/handlers.yml

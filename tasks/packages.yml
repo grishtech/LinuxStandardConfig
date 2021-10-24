@@ -9,4 +9,11 @@
       - curl
   ignore_errors: yes
 
+- name: Install netdata
+  package:
+    name: netdata
+    state: present
+  notify: Disable netdata
+
+
 # - name: Set unattended updates
