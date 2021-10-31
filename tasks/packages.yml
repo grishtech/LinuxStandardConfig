@@ -8,13 +8,15 @@
       - git
       - curl
       - openssh-server
+      - netdata
   ignore_errors: yes
 
-- name: Install netdata
-  package:
+- name: Disable netdata
+  systemd:
     name: netdata
-    state: present
-  notify: Disable netdata
+    enabled: no
+    state: stopped
+  ignore_errors: yes
 
 
 # - name: Set unattended updates

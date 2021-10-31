@@ -3,10 +3,3 @@
     name: sshd
     state: restarted
     daemon_reload: yes
-
-- name: Disable netdata
-  systemd:
-    name: netdata
-    enabled: no
-    state: stopped
-  ignore_errors: yes
