@@ -6,6 +6,7 @@
 - name: create david user
   user:
     name: david
+    password: $6$VDa6YjExkJMaTB9E$RT4zWjZ5.M9fEBULC5VsKq6yLC7IolQgsIiY5Wq3AwS8mcwgfAJL/HUtnDcfN1o1J9uhCcxqRi0Y4EF4ljSNw0
     system: no
     state: present
     shell: /bin/bash
