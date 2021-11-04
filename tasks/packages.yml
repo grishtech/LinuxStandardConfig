@@ -14,8 +14,8 @@
 - name: Disable netdata
   systemd:
     name: netdata
-    enabled: no
-    state: stopped
+    enabled: yes
+    state: started
   ignore_errors: yes
 
 
