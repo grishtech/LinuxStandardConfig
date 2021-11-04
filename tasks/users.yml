@@ -3,10 +3,17 @@
     name: ansible
     system: yes
 
+- name: Set root password
+  user:
+    name: root
+    update_password: always
+    password: $6$RKwGUP293Uxbtcrb$vc4MozMgHvnMX26OA72v5LQIaFRp8hkvLjXVJ05kjhJQW1TK4Xpno5dgHu92WNhMA0veYYuv3TjmscyMsqQ901
+
 - name: create david user
   user:
     name: david
     password: $6$VDa6YjExkJMaTB9E$ztcDUTNW.T1l/LlpMYnDfWO2jjS5HBNKgLXB8ovH8mC3Y.rhu8Px7KXKBG7Kb7vzvXyH4CDkSleTVQ9W3m.1h.
+    update_password: always
     system: no
     state: present
     shell: /bin/bash
