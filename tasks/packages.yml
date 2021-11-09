@@ -9,6 +9,7 @@
       - curl
       - openssh-server
       - netdata
+      - acl
   ignore_errors: yes
 
 - name: Disable netdata
