@@ -1,7 +1,13 @@
-- name: set bash aliases
+- name: set bash aliases for login shells
   copy:
     src: files/bashconfig.sh
     dest: /etc/profile.d/bashconfig.sh
     owner: root
     group: root
     mode: '0644'
+
+- name: import login shell aliases into bashrc interactive shells
+  lineinfile:
+    path: /etc/bash.bashrc
+    state: present
+    line: '. /etc/profile.d/bashconfig.sh'
