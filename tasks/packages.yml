@@ -10,6 +10,7 @@
       - openssh-server
       - netdata
       - acl
+      - bashtop
   ignore_errors: yes
 
 - name: Disable netdata
