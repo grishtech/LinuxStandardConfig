@@ -1,0 +1,7 @@
+- name: set bash aliases
+  copy:
+    src: files/bashconfig.sh
+    dest: /etc/profile.d/bashconfig.sh
+    owner: root
+    group: root
+    mode: 644

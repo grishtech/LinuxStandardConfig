@@ -11,6 +11,7 @@
       - netdata
       - acl
       - bashtop
+      - bpytop
   ignore_errors: yes
 
 - name: Disable netdata
