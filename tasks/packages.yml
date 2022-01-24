@@ -12,6 +12,7 @@
       - acl
       - bashtop
       - bpytop
+      - iperf3
   ignore_errors: yes
 
 - name: Disable netdata
