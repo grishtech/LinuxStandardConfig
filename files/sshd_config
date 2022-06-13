@@ -55,7 +55,8 @@ PubkeyAuthentication yes
 
 # To disable tunneled clear text passwords, change to no here!
 #PasswordAuthentication yes
-AuthenticationMethods "publickey,password"
+AuthenticationMethods "publickey"
+#AuthenticationMethods "publickey,password"
 #PermitEmptyPasswords no
 
 # Change to yes to enable challenge-response passwords (beware issues with
