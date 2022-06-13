@@ -4,3 +4,10 @@
     name: "ansible tasks"
     minute: "*/10"
     job: "/usr/bin/ansible-pull -o -U https://github.com/grishtech/LinuxStandardConfig.git > /dev/null"
+
+- name: install cron job for ansible on boot
+  cron:
+    user: ansible
+    name: "ansible reboot"
+    special_time: 'reboot'
+    job: "/usr/bin/ansible-pull -o -U https://github.com/grishtech/LinuxStandardConfig.git > /dev/null"
