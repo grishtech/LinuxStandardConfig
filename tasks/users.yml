@@ -7,12 +7,12 @@
   user:
     name: root
     update_password: always
-    password: $6$hoR32ATpi9pfw4se$mosQzv.etYw7ruh3QYiAJ7f87nmb4oKBdtP31mPZECOzPCsZRoIMaV5aBFcS9dXf5JGsDUm431XPLOdAJ8Xua.
+    password: $6$6/JanxZGFkgV/GBP$fw.0/JZFMowU6vOK0b7bRm9mxohK3rnibdaAT1ZlQZLV0ER1quiDvBwHDwEQpU/eWNkxhMiw.UaqNYqkus.4d.
 
 - name: create david user
   user:
     name: david
-    password: $6$hoR32ATpi9pfw4se$mosQzv.etYw7ruh3QYiAJ7f87nmb4oKBdtP31mPZECOzPCsZRoIMaV5aBFcS9dXf5JGsDUm431XPLOdAJ8Xua.
+    password: $6$6/JanxZGFkgV/GBP$fw.0/JZFMowU6vOK0b7bRm9mxohK3rnibdaAT1ZlQZLV0ER1quiDvBwHDwEQpU/eWNkxhMiw.UaqNYqkus.4d.
     update_password: always
     system: no
     state: present
