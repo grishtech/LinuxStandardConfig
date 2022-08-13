@@ -13,6 +13,7 @@
       - bashtop
       - bpytop
       - iperf3
+      - libfido2-dev
   ignore_errors: yes
 
 - name: Disable netdata
