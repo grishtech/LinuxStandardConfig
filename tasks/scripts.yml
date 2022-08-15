@@ -1,0 +1,4 @@
+- name: Set APT cache based on location
+  script: Scripts/setaptproxy.py
+  args:
+    executable: python3
