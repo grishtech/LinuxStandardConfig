@@ -14,6 +14,7 @@
       - bpytop
       - iperf3
       - libfido2-dev
+      - unattended-upgrades
   ignore_errors: yes
 
 - name: Disable netdata
