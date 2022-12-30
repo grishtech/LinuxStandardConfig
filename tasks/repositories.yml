@@ -34,7 +34,7 @@
         mode: '0444'
     - name: Add the Docker repo
       apt_repository:
-        repo: "deb [signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu jammy stable"
+        repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu jammy stable"
         state: present
   when:
     - ansible_distribution == "Ubuntu"
