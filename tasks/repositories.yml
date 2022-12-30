@@ -31,6 +31,7 @@
       get_url:
         url: https://download.docker.com/linux/ubuntu/gpg
         dest: /usr/share/keyrings/docker.gpg
+        mode: '0444'
     - name: Add the Docker repo
       apt_repository:
         repo: "deb [signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu jammy stable"
