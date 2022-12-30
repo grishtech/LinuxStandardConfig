@@ -31,7 +31,7 @@
       get_url:
         url: https://download.docker.com/linux/ubuntu/gpg
         dest: /usr/share/keyrings/docker
-        mode: '0444'
+        mode: '0664'
     - name: De-Armor the signing key
       command: 'gpg --dearmor < /usr/share/keyrings/docker > /usr/share/keyrings/docker.gpg'
       args:
