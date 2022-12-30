@@ -16,6 +16,7 @@
 #Ubuntu 22.04 LTS Repositories
 - name: Add tailscale repo on Ubuntu 22.04 LTS (x64)
   block:
+    #tailscale
     - name: Tailscale Ubuntu signing key
       get_url:
         url: https://pkgs.tailscale.com/stable/ubuntu/jammy.noarmor.gpg
@@ -23,6 +24,16 @@
     - name: Tailscale Ubuntu repository
       apt_repository:
         repo: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/ubuntu jammy main"
+        state: present
+    
+    #docker engine
+    - name: Docker signing key
+      get_url:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        dest: /usr/share/keyrings/docker.gpg
+    - name: Add the Docker repo
+      apt_repository:
+        repo: "deb [signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu jammy stable"
         state: present
   when:
     - ansible_distribution == "Ubuntu"
