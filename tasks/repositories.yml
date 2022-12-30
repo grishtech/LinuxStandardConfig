@@ -33,7 +33,7 @@
         dest: /usr/share/keyrings/docker
         mode: '0664'
     - name: De-Armor the signing key
-      command: 'gpg --dearmor < /usr/share/keyrings/docker > /usr/share/keyrings/docker.gpg'
+      shell: 'gpg --dearmor < /usr/share/keyrings/docker > /usr/share/keyrings/docker.gpg'
       args:
         creates: /usr/share/keyrings/docker.gpg
     - name: Add the Docker repo
