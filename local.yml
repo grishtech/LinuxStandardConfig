@@ -5,7 +5,7 @@
   pre_tasks:
     - name: update repositories
       package:
-        update_cache: yes
+        update_cache: false
       changed_when: False
 
   tasks:
