@@ -32,6 +32,10 @@
         url: https://download.docker.com/linux/ubuntu/gpg
         dest: /usr/share/keyrings/docker
         mode: '0664'
+    - name: Temp delete the key
+      file:
+        path: /usr/share/keyrings/docker.gpg
+        state: absent
     - name: De-Armor the signing key
       shell: 'gpg --dearmor < /usr/share/keyrings/docker > /usr/share/keyrings/docker.gpg'
       args:
