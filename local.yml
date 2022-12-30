@@ -16,6 +16,6 @@
    - include: tasks/cron.yml
    - include: tasks/bashconfig.yml
    - include: tasks/scripts.yml
-   #- include: tasks/repositories.yml
+   - include: tasks/repositories.yml
   handlers:
    - include: handlers/handlers.yml
