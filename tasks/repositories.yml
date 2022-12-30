@@ -10,3 +10,18 @@
         repo: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/debian bullseye main"
         state: present
   when: ansible_distribution_release == "bullseye"
+
+- name: Add tailscale repo on Ubuntu 22.04 LTS
+  block:
+    - name: Tailscale Ubuntu signing key
+      get_url:
+        url: https://pkgs.tailscale.com/stable/ubuntu/jammy.noarmor.gpg
+        dest: /usr/share/keyrings/tailscale-archive-keyring.gpg
+    - name: Tailscale Ubuntu repository
+      apt_repository:
+        repo: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/ubuntu jammy main"
+        state: present
+  when:
+    - ansible_distribution == "Ubuntu"
+    - ansible_distribution_release == "jammy"
+    
