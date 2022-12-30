@@ -1,4 +1,5 @@
 #Debian 11 (bullseye) Repositories
+  #tailscale
 - name: Add tailscale repo on Debian 11 (x64)
   block:
     - name: Tailscale debian signing key
