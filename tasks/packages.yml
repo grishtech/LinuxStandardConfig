@@ -14,6 +14,9 @@
       - bpytop
       - iperf3
       - libfido2-dev
+      - ca-certificates
+      - gnupg
+      - lsb-release
       - unattended-upgrades
   ignore_errors: yes
 
