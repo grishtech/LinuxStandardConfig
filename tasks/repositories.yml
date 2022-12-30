@@ -27,11 +27,13 @@
         state: present
     
     #docker engine
-    - name: Docker signing key
+    - name: Docker signing key download
       get_url:
         url: https://download.docker.com/linux/ubuntu/gpg
-        dest: /usr/share/keyrings/docker.gpg
+        dest: /usr/share/keyrings/docker
         mode: '0444'
+    - name: De-Armor the signing key
+      command: gpg --dearmor < /usr/share/keyrings/docker > /usr/share/keyrings/docker.gpg
     - name: Add the Docker repo
       apt_repository:
         repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu jammy stable"
