@@ -1,31 +1,31 @@
-- name: Install Standard Packages
-  package:
-    name:
-      - htop
-      - neovim
-      - tmux
-      - ncdu
-      - git
-      - curl
-      - openssh-server
-      - netdata
-      - acl
-      - bashtop
-      - bpytop
-      - iperf3
-      - libfido2-dev
-      - ca-certificates
-      - gnupg
-      - lsb-release
-      - unattended-upgrades
-  ignore_errors: yes
-
-- name: Disable netdata
-  systemd:
-    name: netdata
-    enabled: no
-    state: stopped
-  ignore_errors: yes
-
-
-# - name: Set unattended updates
+- name: Install Debian-Based distro Standard Packages
+  block:
+    - name: Install Debian packages
+      package:
+        name:
+          - htop
+          - neovim
+          - tmux
+          - ncdu
+          - git
+          - curl
+          - openssh-server
+          - netdata
+          - acl
+          - bashtop
+          - bpytop
+          - iperf3
+          - libfido2-dev
+          - ca-certificates
+          - gnupg
+          - lsb-release
+          - unattended-upgrades
+      ignore_errors: yes
+    - name: Disable netdata
+      systemd:
+        name: netdata
+        enabled: no
+        state: stopped
+      ignore_errors: yes
+  when:
+    - ansible_distribution in ["Debian", "Ubuntu"]
