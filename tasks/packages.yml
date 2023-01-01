@@ -21,12 +21,6 @@
           - lsb-release
           - unattended-upgrades
       ignore_errors: yes
-    - name: Disable netdata
-      systemd:
-        name: netdata
-        enabled: no
-        state: stopped
-      ignore_errors: yes
   when:
     - ansible_distribution in ["Debian", "Ubuntu"]
 

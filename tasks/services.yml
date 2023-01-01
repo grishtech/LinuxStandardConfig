@@ -3,3 +3,10 @@
     name: sshd
     enabled: true
     state: started
+
+- name: Disable netdata
+  systemd:
+    name: netdata
+    enabled: no
+    state: stopped
+  ignore_errors: yes    
