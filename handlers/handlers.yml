@@ -1,5 +1,6 @@
-- name: restart ssh
+- name: restart ssh (or start it) and ensure it's enabled
   systemd:
     name: sshd
     state: restarted
+    enabled: true
     daemon_reload: yes
