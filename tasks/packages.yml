@@ -1,7 +1,7 @@
 - name: Install Universal Packages
   package:
     name:
-      
+      - tmux
 
 - name: Install Debian-Based distro Standard Packages
   block:
@@ -10,7 +10,6 @@
         name:
           - htop
           - neovim
-          - tmux
           - ncdu
           - git
           - curl
