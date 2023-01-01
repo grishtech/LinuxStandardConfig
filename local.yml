@@ -18,5 +18,6 @@
    - include: tasks/cron.yml
    - include: tasks/bashconfig.yml
    - include: tasks/scripts.yml
+   #- include: tasks/remotemanagment.yml
   handlers:
    - include: handlers/handlers.yml
