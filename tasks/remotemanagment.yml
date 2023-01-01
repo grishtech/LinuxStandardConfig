@@ -1,0 +1,16 @@
+#cockpit for RHEL based distros
+- name: Install cockpit & configure it
+  block:
+  - name: Install cockpit and plugins
+    package:
+      - cockpit
+      - cockpit-storaged
+      - cockpit-navigator
+      - cockpit-file-sharing
+      - cockpit-packagekit
+      - cockpit-podman
+      - nfs-utils
+      - udisks2-iscsi
+      - udisks2-lvm2
+  when:
+    - ansible_distribution in ["AlmaLinux"]
