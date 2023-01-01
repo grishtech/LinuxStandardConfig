@@ -3,18 +3,20 @@
   block:
   - name: Install cockpit and plugins
     package:
-      - cockpit
-      - cockpit-storaged
-      - cockpit-navigator
-      - cockpit-file-sharing
-      - cockpit-packagekit
-      - cockpit-podman
-      - nfs-utils
-      - udisks2-iscsi
-      - udisks2-lvm2
+      name:
+        - cockpit
+        - cockpit-storaged
+        - cockpit-navigator
+        - cockpit-file-sharing
+        - cockpit-packagekit
+        - cockpit-podman
+        - nfs-utils
+        - udisks2-iscsi
+        - udisks2-lvm2
   - name: Ensure Cockpit is enable. 
     systemd:
       name: cockpit
       enabled: true #It does not need to be started because it's a socket and not a service
+  # - name: Adjust Cockpit authentication settings
   when:
     - ansible_distribution in ["AlmaLinux"]
