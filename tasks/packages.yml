@@ -2,6 +2,7 @@
   package:
     name:
       - tmux
+      - openssh-server
 
 - name: Install Debian-Based distro Standard Packages
   block:
@@ -13,7 +14,6 @@
           - ncdu
           - git
           - curl
-          - openssh-server
           - netdata
           - acl
           - bashtop
@@ -32,7 +32,6 @@
   block:
     - name: Install RHEL standard packages
       package:
-        - openssh-server
         - vim
   when:
     - ansible_distribution in ["AlmaLinux"]
