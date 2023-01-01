@@ -6,13 +6,13 @@
       - acl
       - git
       - curl
+      - htop
 
 - name: Install Debian-Based distro Standard Packages
   block:
     - name: Install Debian packages
       package:
         name:
-          - htop
           - neovim
           - ncdu
           - netdata
