@@ -29,3 +29,12 @@
       ignore_errors: yes
   when:
     - ansible_distribution in ["Debian", "Ubuntu"]
+
+- name: Install Rhel-Based Distro standard Packages
+  block:
+    - name: Install RHEL standard packages
+      package:
+        - openssh-server
+        - vim
+  when:
+    - ansible_distribution in ["AlmaLinux"]
