@@ -9,4 +9,4 @@
     name: netdata
     enabled: no
     state: stopped
-  ignore_errors: yes    
+  ignore_errors: yes #may not be installed on every distro as per standard installs
