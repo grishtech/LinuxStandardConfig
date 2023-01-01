@@ -9,6 +9,7 @@
       changed_when: False
 
   tasks:
+   - include: tasks/repositories.yml
    - include: tasks/packages.yml
    - include: tasks/services.yml
    - include: tasks/users.yml
@@ -17,6 +18,5 @@
    - include: tasks/cron.yml
    - include: tasks/bashconfig.yml
    - include: tasks/scripts.yml
-   - include: tasks/repositories.yml
   handlers:
    - include: handlers/handlers.yml
