@@ -3,6 +3,9 @@
     name:
       - tmux
       - openssh-server
+      - acl
+      - git
+      - curl
 
 - name: Install Debian-Based distro Standard Packages
   block:
@@ -12,10 +15,7 @@
           - htop
           - neovim
           - ncdu
-          - git
-          - curl
           - netdata
-          - acl
           - bashtop
           - bpytop
           - iperf3
