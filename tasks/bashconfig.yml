@@ -11,3 +11,4 @@
     path: /etc/bash.bashrc
     state: present
     line: '. /etc/profile.d/bashconfig.sh'
+  ignore_errors: yes
