@@ -7,6 +7,12 @@
       package:
         update_cache: true
       changed_when: False
+    - name: Install ansible.posix for RHEL distros as ansible-core does not ship with ansible.posix
+      local_action: command ansible-galaxy collection install ansible.posix
+      args:
+        creates: /root/.ansible/collections/ansible_collections/ansible/posix
+      when:
+        - ansible_distribution in ["AlmaLinux"]
 
   tasks:
    - include: tasks/repositories.yml
