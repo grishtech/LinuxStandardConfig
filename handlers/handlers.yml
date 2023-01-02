@@ -1,4 +1,4 @@
-- name: restart ssh (or start it) and ensure it's enabled
+- name: restart ssh
   systemd:
     name: sshd
     state: restarted
@@ -7,4 +7,10 @@
 
 - name: refresh repos
   package:
-    update_cache: true    
+    update_cache: true
+
+- name: enable Tailscale
+  systemd:
+    name: tailscale
+    state: started
+    enable: true  

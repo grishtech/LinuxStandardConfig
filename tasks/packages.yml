@@ -33,6 +33,7 @@
   block:
     - name: Install RHEL standard packages
       package:
-        - vim
+        name:
+          - vim
   when:
     - ansible_distribution in ["AlmaLinux"]

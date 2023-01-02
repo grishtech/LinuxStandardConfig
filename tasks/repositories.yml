@@ -8,6 +8,19 @@
   when:
     - ansible_distribution in ["AlmaLinux"]
 
+#RHEL 9 Repos
+- name: Add RHEL 9 Repos
+  block:
+    - name: Add tailscale repo for RHEL9 repos
+      yum_repository:
+        name: Tailscale-stable
+        description: Tailscale stable
+        baseurl: https://pkgs.tailscale.com/stable/rhel/9/x86_64
+        gpgkey: https://pkgs.tailscale.com/stable/rhel/9/repo.gpg
+        gpgcheck: false
+        enabled: true
+
+
 #Debian 11 (bullseye) Repositories
   #tailscale
 - name: Add tailscale repo on Debian 11 (x64)
