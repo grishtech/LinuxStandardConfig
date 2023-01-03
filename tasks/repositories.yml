@@ -15,7 +15,7 @@
       yum_repository:
         name: Tailscale-stable
         description: Tailscale stable
-        baseurl: https://pkgs.tailscale.com/stable/rhel/9/x86_64
+        baseurl: https://pkgs.tailscale.com/stable/rhel/9/$basearch
         gpgkey: https://pkgs.tailscale.com/stable/rhel/9/repo.gpg
         gpgcheck: false
         enabled: true
