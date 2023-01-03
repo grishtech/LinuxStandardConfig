@@ -1,19 +1,38 @@
-- name: Set ssh config
+- name: Set ssh config for debian-based distros
   copy:
     src: files/sshd_config
     dest: /etc/ssh/sshd_config
     owner: root
     group: root
     mode: 644
-  notify: restart ssh
+  when:
+    - ansible_distribution in ["Debian", "Ubuntu"]
+  # notify: restart ssh
 
-- name: adjust which sftp server to use for RHEL
-  lineinfile:
-    path: /etc/ssh/sshd_config
-    search_string: 'Subsystem       sftp    /usr/lib/openssh/sftp-server'
-    line: 'Subsystem       sftp    /usr/libexec/openssh/sftp-server'
+- name: set ssh config for rhel
+  copy:
+    src: files/sshd_config_rhel
+    dest: /etc/ssh/sshd_config
     owner: root
     group: root
-    mode: '0644'
-  notify: restart ssh
-  when: ansible_distribution in ["AlmaLinux"]
+    mode: 644
+  when:
+    - ansible_distribution in ["AlmaLinux"]
+
+
+#regex based solution later
+# - name: adjust which sftp server to use for RHEL
+#   block:
+#   - name: Correct which sftp-server to use
+#     lineinfile:
+#       path: /etc/ssh/sshd_config
+#       regexp: ^Subsystem(.*)\/usr\/lib\/openssh\/sftp-server*
+#       line: 'Subsystem  sftp  /usr/libexec/openssh/sftp-server'
+#       backrefs: yes
+#     # notify: restart ssh
+#   - name: Add include line
+#     lineinfile:
+#       path: /etc/ssh/sshd_config
+#       line: Include /etc/ssh/sshd_config.d/*.conf
+#       state: present
+#   when: ansible_distribution in ["AlmaLinux"]
