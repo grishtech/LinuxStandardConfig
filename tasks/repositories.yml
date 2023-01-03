@@ -74,3 +74,8 @@
     - ansible_distribution == "Ubuntu"
     - ansible_distribution_release == "jammy"
     - ansible_machine == "x86_64"
+
+
+#end task
+- name: Flush handlers
+  meta: flush_handlers    
