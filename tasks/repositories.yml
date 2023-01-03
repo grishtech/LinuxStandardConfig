@@ -28,6 +28,7 @@
         gpgkey: https://download.docker.com/linux/centos/gpg
         gpgcheck: true
         enabled: true
+      notify: refresh repos
   when:
     - ansible_distribution in ["AlmaLinux"]
 
