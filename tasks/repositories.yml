@@ -19,6 +19,8 @@
         gpgkey: https://pkgs.tailscale.com/stable/rhel/9/repo.gpg
         gpgcheck: false
         enabled: true
+  when:
+    - ansible_distribution in ["AlmaLinux"]
 
 
 #Debian 11 (bullseye) Repositories
