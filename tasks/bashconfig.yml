@@ -12,3 +12,12 @@
     state: present
     line: '. /etc/profile.d/bashconfig.sh'
   ignore_errors: yes
+
+# - name: import login shell aliases into bashrc interactive shells for rhel
+#   lineinfile:
+#     path: /etc/bashrc
+#     state: present
+#     line: '. /etc/profile.d/bashconfig.sh'
+#   ignore_errors: yes
+#   when:
+#     - ansible_distribution in ["AlmaLinux"]
