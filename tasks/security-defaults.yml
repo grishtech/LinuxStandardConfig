@@ -6,3 +6,14 @@
     group: root
     mode: 644
   notify: restart ssh
+
+- name: adjust which sftp server to use for RHEL
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    search_string: 'Subsystem       sftp    /usr/lib/openssh/sftp-server'
+    line: 'Subsystem       sftp    /usr/libexec/openssh/sftp-server'
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart ssh
+  when: ansible_distribution in ["AlmaLinux"]
