@@ -20,6 +20,14 @@
         gpgcheck: false
         enabled: true
       notify: refresh repos
+    - name: Add docker repos (if you need to use docker instead of podman)
+      yum_repository:
+        name: Docker-CE-Repo
+        description: Docker CE Repo
+        baseurl: https://download.docker.com/linux/centos/$releasever/$basearch/stable
+        gpgkey: https://download.docker.com/linux/centos/gpg
+        gpgcheck: true
+        enabled: true
   when:
     - ansible_distribution in ["AlmaLinux"]
 
