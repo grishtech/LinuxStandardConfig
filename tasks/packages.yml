@@ -9,6 +9,12 @@
       - htop
       - lsof #view open files
 
+- name: Install Guest tools if virtualized
+  package:
+    name: qemu-guest-agent
+  when:
+    - ansible_chassis_vendor == "QEMU"
+
 - name: Install Debian-Based distro Standard Packages
   block:
     - name: Install Debian packages
