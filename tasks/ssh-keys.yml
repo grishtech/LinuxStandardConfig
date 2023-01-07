@@ -13,3 +13,11 @@
     key: '{{ item }}'
     exclusive: True
   with_file: public_keys/david
+
+- name: add ssh keys for ansible
+  authorized_key:
+    user: ansible
+    state: present
+    key: '{{ item }}'
+    exclusive: True
+  with_file: public_keys/ansible  
