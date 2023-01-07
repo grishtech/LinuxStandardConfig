@@ -2,6 +2,7 @@
   user:
     name: ansible
     system: yes
+    shell: /bin/bash
 
 - name: Set root password
   user:
