@@ -15,10 +15,20 @@
       yum_repository:
         name: Tailscale-stable
         description: Tailscale stable
-        baseurl: https://pkgs.tailscale.com/stable/rhel/9/x86_64
+        baseurl: https://pkgs.tailscale.com/stable/rhel/9/$basearch
         gpgkey: https://pkgs.tailscale.com/stable/rhel/9/repo.gpg
         gpgcheck: false
         enabled: true
+      notify: refresh repos
+    - name: Add docker repos (if you need to use docker instead of podman)
+      yum_repository:
+        name: Docker-CE-Repo
+        description: Docker CE Repo
+        baseurl: https://download.docker.com/linux/centos/$releasever/$basearch/stable
+        gpgkey: https://download.docker.com/linux/centos/gpg
+        gpgcheck: true
+        enabled: true
+      notify: refresh repos
   when:
     - ansible_distribution in ["AlmaLinux"]
 
@@ -35,6 +45,7 @@
       apt_repository:
         repo: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/debian bullseye main"
         state: present
+      notify: refresh repos
   when:
     - ansible_distribution_release == "bullseye"
     - ansible_machine == "x86_64"
@@ -51,6 +62,7 @@
       apt_repository:
         repo: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/ubuntu jammy main"
         state: present
+      notify: refresh repos
     
     #docker engine
     - name: Docker signing key download
@@ -70,7 +82,13 @@
       apt_repository:
         repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu jammy stable"
         state: present
+      notify: refresh repos
   when:
     - ansible_distribution == "Ubuntu"
     - ansible_distribution_release == "jammy"
     - ansible_machine == "x86_64"
+
+
+#end task
+- name: Flush handlers
+  meta: flush_handlers    
