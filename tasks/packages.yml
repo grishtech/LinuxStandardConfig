@@ -8,6 +8,8 @@
       - curl
       - htop
       - lsof #view open files
+      - bash-completion
+      - cron
 
 - name: Install Guest tools if virtualized
   package:
