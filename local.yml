@@ -5,7 +5,7 @@
   pre_tasks:
     - name: update repositories
       package:
-        update_cache: true
+        update_cache: false
       changed_when: False
     - name: Install ansible.posix for RHEL distros as ansible-core does not ship with ansible.posix
       local_action: command ansible-galaxy collection install ansible.posix
