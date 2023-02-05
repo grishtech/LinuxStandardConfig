@@ -14,6 +14,7 @@
 - name: Install Guest tools if virtualized
   package:
     name: qemu-guest-agent
+  ignore_errors: yes
   when:
     - ansible_chassis_vendor == "QEMU"
 
