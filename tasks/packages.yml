@@ -10,6 +10,7 @@
       - lsof #view open files
       - bash-completion
       - cron
+      - libfido2-dev
 
 - name: Install Guest tools if virtualized
   package:
