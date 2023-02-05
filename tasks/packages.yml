@@ -11,6 +11,7 @@
       - bash-completion
       - cron
       - libfido2-dev
+  ignore_errors: yes
 
 - name: Install Guest tools if virtualized
   package:
