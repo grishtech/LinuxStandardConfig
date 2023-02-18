@@ -7,4 +7,3 @@ alias ips='ip a'
 alias space='df -hT -x tmpfs -x overlay -x squashfs'
 alias ll='ls -lah'
 alias updatepolicy='sudo ansible-pull -o -U https://github.com/grishtech/LinuxStandardConfig.git'
-tmux attach && exit || tmux && exit
