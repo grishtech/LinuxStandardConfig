@@ -8,5 +8,5 @@ alias space='df -hT -x tmpfs -x overlay -x squashfs'
 alias ll='ls -lah'
 alias updatepolicy='sudo ansible-pull -o -U https://github.com/grishtech/LinuxStandardConfig.git'
 if [ -z "$TMUX" ]; then
-    tmux new-session -A -s $(hostname) && exit
+    tmux new-session -A -s $(hostname)
 fi
