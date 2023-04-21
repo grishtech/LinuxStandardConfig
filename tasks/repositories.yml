@@ -60,7 +60,7 @@
         dest: /usr/share/keyrings/tailscale-archive-keyring.gpg
     - name: Tailscale Ubuntu repository
       apt_repository:
-        repo: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/ubuntu jammy main"
+        repo: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/ubuntu/dists jammy main"
         state: present
       notify: refresh repos
     
