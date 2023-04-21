@@ -82,7 +82,9 @@
       apt_repository:
         repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu jammy stable"
         state: present
+      ignore_errors: yes
       notify: refresh repos
+      
   when:
     - ansible_distribution == "Ubuntu"
     - ansible_distribution_release == "jammy"
