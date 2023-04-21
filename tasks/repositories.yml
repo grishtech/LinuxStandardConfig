@@ -60,7 +60,7 @@
         dest: /usr/share/keyrings/tailscale-archive-keyring.gpg
     - name: Tailscale Ubuntu repository
       apt_repository:
-        repo: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/ubuntu/dists jammy main"
+        repo: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/ubuntu/ jammy main"
         state: present
       notify: refresh repos
     
@@ -80,7 +80,7 @@
         creates: /usr/share/keyrings/docker.gpg
     - name: Add the Docker repo
       apt_repository:
-        repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu jammy stable"
+        repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu/dists jammy stable"
         state: present
       notify: refresh repos
   when:
