@@ -63,6 +63,26 @@
         repo: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/debian bookworm main"
         state: present
       notify: refresh repos
+
+    - name: Docker signing key download
+      get_url:
+        url: https://download.docker.com/linux/debian/gpg
+        dest: /usr/share/keyrings/docker
+        mode: '0664'
+    - name: Temp delete the key
+      file:
+        path: /usr/share/keyrings/docker.gpg
+        state: absent
+    - name: De-Armor the signing key
+      shell: 'gpg --dearmor < /usr/share/keyrings/docker > /usr/share/keyrings/docker.gpg'
+      args:
+        creates: /usr/share/keyrings/docker.gpg
+    - name: Docker Repo for Debian 12
+        apt_repository:
+          repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/debian bookworm stable"
+          state: present
+        ignore_errors: yes
+      notify: refresh repos
   when:
     - ansible_distribution_release == "bookworm"
     - ansible_machine == "x86_64"
