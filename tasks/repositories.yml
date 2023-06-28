@@ -50,6 +50,23 @@
     - ansible_distribution_release == "bullseye"
     - ansible_machine == "x86_64"
 
+#Debian 12 Repositories
+  #tailscale
+- name: Add tailscale repo on Debian 12 (x64)
+  block:
+    - name: Tailscale debian signing key
+      get_url:
+        url: https://pkgs.tailscale.com/stable/debian/bookworm.noarmor.gpg
+        dest: /usr/share/keyrings/tailscale-archive-keyring.gpg
+    - name: Tailscale debian repository
+      apt_repository:
+        repo: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/debian bookworm main"
+        state: present
+      notify: refresh repos
+  when:
+    - ansible_distribution_release == "bookworm"
+    - ansible_machine == "x86_64"
+
 #Ubuntu 22.04 LTS Repositories
 - name: Add tailscale repo on Ubuntu 22.04 LTS (x64)
   block:
