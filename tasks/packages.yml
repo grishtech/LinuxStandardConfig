@@ -30,8 +30,6 @@
           - neovim
           - ncdu
           - netdata
-          - bashtop
-          - bpytop
           - iperf3
           - libfido2-dev
           - ca-certificates
