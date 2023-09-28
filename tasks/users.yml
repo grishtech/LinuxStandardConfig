@@ -8,12 +8,12 @@
   user:
     name: root
     update_password: always
-    password: $6$6/JanxZGFkgV/GBP$fw.0/JZFMowU6vOK0b7bRm9mxohK3rnibdaAT1ZlQZLV0ER1quiDvBwHDwEQpU/eWNkxhMiw.UaqNYqkus.4d.
+    password: $y$j9T$PPnqHuwriIPv7hGLLhTKC/$/cRa7.5ekN5ZNFR/Yn5FVc8KSoFTrpsiQXY0WbgccZ2
 
 - name: create david user
   user:
     name: david
-    password: $6$6/JanxZGFkgV/GBP$fw.0/JZFMowU6vOK0b7bRm9mxohK3rnibdaAT1ZlQZLV0ER1quiDvBwHDwEQpU/eWNkxhMiw.UaqNYqkus.4d.
+    password: $y$j9T$joZS91hr4WhL68ilj.cFl/$eUcE0whiQxqfVC8dyvywJBx1ZbfuV86k58YR5sW9utB
     update_password: always
     system: no
     state: present
