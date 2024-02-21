@@ -14,16 +14,16 @@
       when:
         - ansible_distribution in ["AlmaLinux"]
 
-  tasks:
-   - include: tasks/repositories.yml
-   - include: tasks/packages.yml
-   - include: tasks/services.yml
-   - include: tasks/users.yml
-   - include: tasks/ssh-keys.yml
-   - include: tasks/security-defaults.yml
-   - include: tasks/cron.yml
-   - include: tasks/bashconfig.yml
-   - include: tasks/scripts.yml
-   #- include: tasks/remotemanagment.yml
+  include_tasks:
+   file: tasks/repositories.yml
+   file: tasks/packages.yml
+   file: tasks/services.yml
+   file: tasks/users.yml
+   file: tasks/ssh-keys.yml
+   file: tasks/security-defaults.yml
+   file: tasks/cron.yml
+   file: tasks/bashconfig.yml
+   file: tasks/scripts.yml
+   #file: tasks/remotemanagment.yml
   handlers:
    - include: handlers/handlers.yml
