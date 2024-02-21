@@ -18,14 +18,14 @@
     - name: Run all tasks
       import_tasks:
         file: tasks/repositories.yml
-        file: tasks/packages.yml
-        file: tasks/services.yml
-        file: tasks/users.yml
-        file: tasks/ssh-keys.yml
-        file: tasks/security-defaults.yml
-        file: tasks/cron.yml
-        file: tasks/bashconfig.yml
-        file: tasks/scripts.yml
+        #file: tasks/packages.yml
+        #file: tasks/services.yml
+        #file: tasks/users.yml
+        #file: tasks/ssh-keys.yml
+        #file: tasks/security-defaults.yml
+        #file: tasks/cron.yml
+        #file: tasks/bashconfig.yml
+        #file: tasks/scripts.yml
         #file: tasks/remotemanagment.yml
   handlers:
    - include: handlers/handlers.yml
