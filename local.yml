@@ -13,16 +13,16 @@
         creates: /root/.ansible/collections/ansible_collections/ansible/posix
       when:
         - ansible_distribution in ["AlmaLinux"]
-
-  include_tasks: tasks/repositories.yml
-  include_tasks: tasks/packages.yml
-  include_tasks: tasks/services.yml
-  include_tasks: tasks/users.yml
-  include_tasks: tasks/ssh-keys.yml
-  include_tasks: tasks/security-defaults.yml
-  include_tasks: tasks/cron.yml
-  include_tasks: tasks/bashconfig.yml
-  include_tasks: tasks/scripts.yml
-  #include_tasks: tasks/remotemanagment.yml
+  import_tasks:
+    file: tasks/repositories.yml
+    file: tasks/packages.yml
+    file: tasks/services.yml
+    file: tasks/users.yml
+    file: tasks/ssh-keys.yml
+    file: tasks/security-defaults.yml
+    file: tasks/cron.yml
+    file: tasks/bashconfig.yml
+    file: tasks/scripts.yml
+    #file: tasks/remotemanagment.yml
   handlers:
    - include: handlers/handlers.yml
