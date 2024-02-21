@@ -15,16 +15,15 @@
         - ansible_distribution in ["AlmaLinux"]
   
   tasks:
-    - name: Run all tasks
-      include_tasks: tasks/repositories.yml
-      include_tasks: tasks/packages.yml
-      include_tasks: tasks/services.yml
-      include_tasks: tasks/users.yml
-      include_tasks: tasks/ssh-keys.yml
-      include_tasks: tasks/security-defaults.yml
-      include_tasks: tasks/cron.yml
-      include_tasks: tasks/bashconfig.yml
-      include_tasks: tasks/scripts.yml
-      #include_tasks: tasks/remotemanagment.yml
+      -include_tasks: tasks/repositories.yml
+      -include_tasks: tasks/packages.yml
+      -include_tasks: tasks/services.yml
+      -include_tasks: tasks/users.yml
+      -include_tasks: tasks/ssh-keys.yml
+      -include_tasks: tasks/security-defaults.yml
+      -include_tasks: tasks/cron.yml
+      -include_tasks: tasks/bashconfig.yml
+      -include_tasks: tasks/scripts.yml
+      #-include_tasks: tasks/remotemanagment.yml
   handlers:
    - include: handlers/handlers.yml
