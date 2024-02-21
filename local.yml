@@ -16,15 +16,15 @@
 
   - name: Run Tasks
     include_tasks:
-    file: tasks/repositories.yml
-    file: tasks/packages.yml
-    file: tasks/services.yml
-    file: tasks/users.yml
-    file: tasks/ssh-keys.yml
-    file: tasks/security-defaults.yml
-    file: tasks/cron.yml
-    file: tasks/bashconfig.yml
-    file: tasks/scripts.yml
-    #file: tasks/remotemanagment.yml
+      file: tasks/repositories.yml
+      file: tasks/packages.yml
+      file: tasks/services.yml
+      file: tasks/users.yml
+      file: tasks/ssh-keys.yml
+      file: tasks/security-defaults.yml
+      file: tasks/cron.yml
+      file: tasks/bashconfig.yml
+      file: tasks/scripts.yml
+      #file: tasks/remotemanagment.yml
   handlers:
    - include: handlers/handlers.yml
