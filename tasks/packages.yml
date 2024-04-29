@@ -15,12 +15,19 @@
       - unzip
   ignore_errors: yes
 
-- name: Install Guest tools if virtualized
+- name: Install Guest tools if virtualized(KVM)
   package:
     name: qemu-guest-agent
   ignore_errors: yes
   when:
     - ansible_chassis_vendor == "QEMU"
+
+- name: Install Guest tools if virtualized(XEN)
+  package:
+    name: xen-guest-agent
+  ignore_errors: yes
+  when:
+    - ansible_virtualization_type == "xen"
 
 - name: Install Debian-Based distro Standard Packages
   block:
