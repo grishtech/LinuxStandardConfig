@@ -47,8 +47,8 @@
 #         state: present
 #       notify: refresh repos
 #   when:
-    - ansible_distribution_release == "bullseye"
-    - ansible_machine == "x86_64"
+    # - ansible_distribution_release == "bullseye"
+    # - ansible_machine == "x86_64"
 
 #Global Debian-based Repos
 - name: Add Repositories for debian-based distros
