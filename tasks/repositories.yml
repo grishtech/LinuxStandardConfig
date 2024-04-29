@@ -1,72 +1,71 @@
-#Install epel repo on RHEL distros
-- name: Install epel-release on RHEL-based distros
-  block:
-    - name: Install epel-release
-      package:
-        name: epel-release
-      notify: refresh repos
-  when:
-    - ansible_distribution in ["AlmaLinux"]
+# #Install epel repo on RHEL distros
+# - name: Install epel-release on RHEL-based distros
+#   block:
+#     - name: Install epel-release
+#       package:
+#         name: epel-release
+#       notify: refresh repos
+#   when:
+#     - ansible_distribution in ["AlmaLinux"]
 
-#RHEL 9 Repos
-- name: Add RHEL 9 Repos
-  block:
-    - name: Add tailscale repo for RHEL9 repos
-      yum_repository:
-        name: Tailscale-stable
-        description: Tailscale stable
-        baseurl: https://pkgs.tailscale.com/stable/rhel/9/$basearch
-        gpgkey: https://pkgs.tailscale.com/stable/rhel/9/repo.gpg
-        gpgcheck: false
-        enabled: true
-      notify: refresh repos
-    - name: Add docker repos (if you need to use docker instead of podman)
-      yum_repository:
-        name: Docker-CE-Repo
-        description: Docker CE Repo
-        baseurl: https://download.docker.com/linux/centos/$releasever/$basearch/stable
-        gpgkey: https://download.docker.com/linux/centos/gpg
-        gpgcheck: true
-        enabled: true
-      notify: refresh repos
-  when:
-    - ansible_distribution in ["AlmaLinux"]
+# #RHEL 9 Repos
+# - name: Add RHEL 9 Repos
+#   block:
+#     - name: Add tailscale repo for RHEL9 repos
+#       yum_repository:
+#         name: Tailscale-stable
+#         description: Tailscale stable
+#         baseurl: https://pkgs.tailscale.com/stable/rhel/9/$basearch
+#         gpgkey: https://pkgs.tailscale.com/stable/rhel/9/repo.gpg
+#         gpgcheck: false
+#         enabled: true
+#       notify: refresh repos
+#     - name: Add docker repos (if you need to use docker instead of podman)
+#       yum_repository:
+#         name: Docker-CE-Repo
+#         description: Docker CE Repo
+#         baseurl: https://download.docker.com/linux/centos/$releasever/$basearch/stable
+#         gpgkey: https://download.docker.com/linux/centos/gpg
+#         gpgcheck: true
+#         enabled: true
+#       notify: refresh repos
+#   when:
+#     - ansible_distribution in ["AlmaLinux"]
 
 
-#Debian 11 (bullseye) Repositories
-  #tailscale
-- name: Add tailscale repo on Debian 11 (x64)
-  block:
-    - name: Tailscale debian signing key
-      get_url:
-        url: https://pkgs.tailscale.com/stable/debian/bullseye.noarmor.gpg
-        dest: /usr/share/keyrings/tailscale-archive-keyring.gpg
-    - name: Tailscale debian repository
-      apt_repository:
-        repo: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/debian bullseye main"
-        state: present
-      notify: refresh repos
-  when:
+# #Debian 11 (bullseye) Repositories
+#   #tailscale
+# - name: Add tailscale repo on Debian 11 (x64)
+#   block:
+#     - name: Tailscale debian signing key
+#       get_url:
+#         url: https://pkgs.tailscale.com/stable/debian/bullseye.noarmor.gpg
+#         dest: /usr/share/keyrings/tailscale-archive-keyring.gpg
+#     - name: Tailscale debian repository
+#       apt_repository:
+#         repo: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/debian bullseye main"
+#         state: present
+#       notify: refresh repos
+#   when:
     - ansible_distribution_release == "bullseye"
     - ansible_machine == "x86_64"
 
-#Debian 12 Repositories
-  #tailscale
-- name: Add tailscale repo on Debian 12 (x64)
+#Global Debian-based Repos
+- name: Add Repositories for debian-based distros
   block:
-    - name: Tailscale debian signing key
+    - name: Tailscale signing key
       get_url:
-        url: https://pkgs.tailscale.com/stable/debian/bookworm.noarmor.gpg
+        url: https://pkgs.tailscale.com/stable/{{ ansible_distribution | lower }}/{{ ansible_distribution_release | lower }}.noarmor.gpg
         dest: /usr/share/keyrings/tailscale-archive-keyring.gpg
-    - name: Tailscale debian repository
+    - name: Tailscale repository
       apt_repository:
-        repo: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/debian bookworm main"
+        repo: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/{{ ansible_distribution | lower }} {{ ansible_distribution_release | lower }} main"
         state: present
       notify: refresh repos
 
     - name: Docker signing key download
       get_url:
-        url: https://download.docker.com/linux/debian/gpg
+        url: https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg
         dest: /usr/share/keyrings/docker
         mode: '0664'
     - name: Temp delete the key
@@ -77,55 +76,92 @@
       shell: 'gpg --dearmor < /usr/share/keyrings/docker > /usr/share/keyrings/docker.gpg'
       args:
         creates: /usr/share/keyrings/docker.gpg
-    - name: Docker Repo for Debian 12
+    - name: Add the docker repository
       apt_repository:
-        repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/debian bookworm stable"
+        repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release | lower }} stable"
         state: present
       ignore_errors: yes
       notify: refresh repos
   when:
-    - ansible_distribution_release == "bookworm"
+    - (ansible_distribution == "Ubuntu") or (ansible_distribution == "Debian")
     - ansible_machine == "x86_64"
 
-#Ubuntu 22.04 LTS Repositories
-- name: Add tailscale repo on Ubuntu 22.04 LTS (x64)
-  block:
-    #tailscale
-    - name: Tailscale Ubuntu signing key
-      get_url:
-        url: https://pkgs.tailscale.com/stable/ubuntu/jammy.noarmor.gpg
-        dest: /usr/share/keyrings/tailscale-archive-keyring.gpg
-    - name: Tailscale Ubuntu repository
-      apt_repository:
-        repo: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/ubuntu/ jammy main"
-        state: present
-      notify: refresh repos
+# #Debian 12 Repositories
+#   #tailscale
+# - name: Add tailscale repo on Debian 12 (x64)
+#   block:
+#     - name: Tailscale debian signing key
+#       get_url:
+#         url: https://pkgs.tailscale.com/stable/debian/bookworm.noarmor.gpg
+#         dest: /usr/share/keyrings/tailscale-archive-keyring.gpg
+#     - name: Tailscale debian repository
+#       apt_repository:
+#         repo: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/debian bookworm main"
+#         state: present
+#       notify: refresh repos
+
+#     - name: Docker signing key download
+#       get_url:
+#         url: https://download.docker.com/linux/debian/gpg
+#         dest: /usr/share/keyrings/docker
+#         mode: '0664'
+#     - name: Temp delete the key
+#       file:
+#         path: /usr/share/keyrings/docker.gpg
+#         state: absent
+#     - name: De-Armor the signing key
+#       shell: 'gpg --dearmor < /usr/share/keyrings/docker > /usr/share/keyrings/docker.gpg'
+#       args:
+#         creates: /usr/share/keyrings/docker.gpg
+#     - name: Docker Repo for Debian 12
+#       apt_repository:
+#         repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/debian bookworm stable"
+#         state: present
+#       ignore_errors: yes
+#       notify: refresh repos
+#   when:
+#     - ansible_distribution_release == "bookworm"
+#     - ansible_machine == "x86_64"
+
+# #Ubuntu 22.04 LTS Repositories
+# - name: Add tailscale repo on Ubuntu 22.04 LTS (x64)
+#   block:
+#     #tailscale
+#     - name: Tailscale Ubuntu signing key
+#       get_url:
+#         url: https://pkgs.tailscale.com/stable/ubuntu/jammy.noarmor.gpg
+#         dest: /usr/share/keyrings/tailscale-archive-keyring.gpg
+#     - name: Tailscale Ubuntu repository
+#       apt_repository:
+#         repo: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/ubuntu/ jammy main"
+#         state: present
+#       notify: refresh repos
     
-    #docker engine
-    - name: Docker signing key download
-      get_url:
-        url: https://download.docker.com/linux/ubuntu/gpg
-        dest: /usr/share/keyrings/docker
-        mode: '0664'
-    - name: Temp delete the key
-      file:
-        path: /usr/share/keyrings/docker.gpg
-        state: absent
-    - name: De-Armor the signing key
-      shell: 'gpg --dearmor < /usr/share/keyrings/docker > /usr/share/keyrings/docker.gpg'
-      args:
-        creates: /usr/share/keyrings/docker.gpg
-    - name: Add the Docker repo
-      apt_repository:
-        repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu jammy stable"
-        state: present
-      ignore_errors: yes
-      notify: refresh repos
+#     #docker engine
+#     - name: Docker signing key download
+#       get_url:
+#         url: https://download.docker.com/linux/ubuntu/gpg
+#         dest: /usr/share/keyrings/docker
+#         mode: '0664'
+#     - name: Temp delete the key
+#       file:
+#         path: /usr/share/keyrings/docker.gpg
+#         state: absent
+#     - name: De-Armor the signing key
+#       shell: 'gpg --dearmor < /usr/share/keyrings/docker > /usr/share/keyrings/docker.gpg'
+#       args:
+#         creates: /usr/share/keyrings/docker.gpg
+#     - name: Add the Docker repo
+#       apt_repository:
+#         repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu jammy stable"
+#         state: present
+#       ignore_errors: yes
+#       notify: refresh repos
       
-  when:
-    - ansible_distribution == "Ubuntu"
-    - ansible_distribution_release == "jammy"
-    - ansible_machine == "x86_64"
+#   when:
+#     - ansible_distribution == "Ubuntu"
+#     - ansible_distribution_release == "jammy"
+#     - ansible_machine == "x86_64"
 
 
 #end task
