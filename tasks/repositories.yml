@@ -12,7 +12,7 @@
         state: absent
     - name: Tailscale repository
       apt_repository:
-        repo: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/{{ ansible_distribution | lower }} {{ ansible_distribution_release | lower }} main"
+        repo: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] http://pkgs.tailscale.com/stable/{{ ansible_distribution | lower }} {{ ansible_distribution_release | lower }} main"
         state: present
       notify: refresh repos
 
@@ -36,7 +36,7 @@
         state: absent
     - name: Add the docker repository
       apt_repository:
-        repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release | lower }} stable"
+        repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.gpg] http://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release | lower }} stable"
         state: present
       ignore_errors: yes
       notify: refresh repos
