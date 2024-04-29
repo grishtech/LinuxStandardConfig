@@ -1,4 +1,4 @@
-# #Install epel repo on RHEL distros
+#Install epel repo on RHEL distros
 # - name: Install epel-release on RHEL-based distros
 #   block:
 #     - name: Install epel-release
@@ -8,7 +8,7 @@
 #   when:
 #     - ansible_distribution in ["AlmaLinux"]
 
-# #RHEL 9 Repos
+#RHEL 9 Repos
 # - name: Add RHEL 9 Repos
 #   block:
 #     - name: Add tailscale repo for RHEL9 repos
@@ -53,35 +53,40 @@
 #Global Debian-based Repos
 - name: Add Repositories for debian-based distros
   block:
-    - name: Tailscale signing key
-      get_url:
-        url: https://pkgs.tailscale.com/stable/{{ ansible_distribution | lower }}/{{ ansible_distribution_release | lower }}.noarmor.gpg
-        dest: /usr/share/keyrings/tailscale-archive-keyring.gpg
-    - name: Tailscale repository
-      apt_repository:
-        repo: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/{{ ansible_distribution | lower }} {{ ansible_distribution_release | lower }} main"
-        state: present
-      notify: refresh repos
+    - name: Test
+      lineinfile:
+        path: /test
+        line: test
+        create: true
+    # - name: Tailscale signing key
+    #   get_url:
+    #     url: https://pkgs.tailscale.com/stable/{{ ansible_distribution | lower }}/{{ ansible_distribution_release | lower }}.noarmor.gpg
+    #     dest: /usr/share/keyrings/tailscale-archive-keyring.gpg
+    # - name: Tailscale repository
+    #   apt_repository:
+    #     repo: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/{{ ansible_distribution | lower }} {{ ansible_distribution_release | lower }} main"
+    #     state: present
+    #   notify: refresh repos
 
-    - name: Docker signing key download
-      get_url:
-        url: https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg
-        dest: /usr/share/keyrings/docker
-        mode: '0664'
-    - name: Temp delete the key
-      file:
-        path: /usr/share/keyrings/docker.gpg
-        state: absent
-    - name: De-Armor the signing key
-      shell: 'gpg --dearmor < /usr/share/keyrings/docker > /usr/share/keyrings/docker.gpg'
-      args:
-        creates: /usr/share/keyrings/docker.gpg
-    - name: Add the docker repository
-      apt_repository:
-        repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release | lower }} stable"
-        state: present
-      ignore_errors: yes
-      notify: refresh repos
+    # - name: Docker signing key download
+    #   get_url:
+    #     url: https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg
+    #     dest: /usr/share/keyrings/docker
+    #     mode: '0664'
+    # - name: Temp delete the key
+    #   file:
+    #     path: /usr/share/keyrings/docker.gpg
+    #     state: absent
+    # - name: De-Armor the signing key
+    #   shell: 'gpg --dearmor < /usr/share/keyrings/docker > /usr/share/keyrings/docker.gpg'
+    #   args:
+    #     creates: /usr/share/keyrings/docker.gpg
+    # - name: Add the docker repository
+    #   apt_repository:
+    #     repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release | lower }} stable"
+    #     state: present
+    #   ignore_errors: yes
+    #   notify: refresh repos
   when:
     - (ansible_distribution == "Ubuntu") or (ansible_distribution == "Debian")
     - ansible_machine == "x86_64"
