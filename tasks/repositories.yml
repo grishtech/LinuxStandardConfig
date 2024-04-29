@@ -42,7 +42,6 @@
       notify: refresh repos
   when:
     - (ansible_distribution == "Ubuntu") or (ansible_distribution == "Debian")
-    - ansible_machine == "x86_64"
 
 #end task
 - name: Flush handlers
