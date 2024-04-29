@@ -9,6 +9,16 @@
     - (ansible_distribution == "Debian") or ((ansible_distribution == "Ubuntu") and (ansible_distribution_major_version < "22.10"))
   # notify: restart ssh
 
+- name: Copy SSH config for Ubuntu distro version 22.10 and greater
+  copy:
+    src: files/sshd_config
+    dest: /etc/ssh/sshd_config.d/standard.conf
+    owner: root
+    group: root
+    mode: 644
+  when:
+    - (ansible_distribution == "Ubuntu") and (ansible_distribution_major_version >= "22.10")
+
 - name: set ssh config for rhel
   copy:
     src: files/sshd_config_rhel
