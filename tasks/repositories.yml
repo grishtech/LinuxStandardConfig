@@ -6,10 +6,10 @@
         url: https://pkgs.tailscale.com/stable/{{ ansible_distribution | lower }}/{{ ansible_distribution_release | lower }}.noarmor.gpg
         dest: /usr/share/keyrings/tailscale-archive-keyring.gpg
     
-    - name: Temp - Remove old tailscale repo
-      file:
-        path: /etc/apt/sources.list.d/pkgs_tailscale_com_stable_ubuntu.list
-        state: absent
+    # - name: Temp - Remove old tailscale repo
+    #   file:
+    #     path: /etc/apt/sources.list.d/pkgs_tailscale_com_stable_ubuntu.list
+    #     state: absent
     - name: Tailscale repository
       apt_repository:
         repo: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/{{ ansible_distribution | lower }} {{ ansible_distribution_release | lower }} main"
@@ -30,10 +30,10 @@
       args:
         creates: /usr/share/keyrings/docker.gpg
     
-    - name: Temp - Remove old docker repo
-      file:
-        path: /etc/apt/sources.list.d/download_docker_com_linux_ubuntu.list
-        state: absent
+    # - name: Temp - Remove old docker repo
+    #   file:
+    #     path: /etc/apt/sources.list.d/download_docker_com_linux_ubuntu.list
+    #     state: absent
     - name: Add the docker repository
       apt_repository:
         repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release | lower }} stable"
