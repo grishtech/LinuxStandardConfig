@@ -41,14 +41,14 @@
       ignore_errors: yes
       notify: refresh repos
 
-      - name: Repo tasks for xen-guest-tools
-        block:
-          - name: Add Repo for xen-guest-tools
-            apt_repository:
-              repo: "deb [trusted=yes] https://gitlab.com/api/v4/projects/xen-project%252Fxen-guest-agent/packages/generic/deb-amd64/ release/"
-              state: present
-        when:
-          - ansible_virtualization_type == "xen"
+    - name: Repo tasks for xen-guest-tools
+      block:
+        - name: Add Repo for xen-guest-tools
+          apt_repository:
+            repo: "deb [trusted=yes] https://gitlab.com/api/v4/projects/xen-project%252Fxen-guest-agent/packages/generic/deb-amd64/ release/"
+            state: present
+      when:
+        - ansible_virtualization_type == "xen"
   when:
     - (ansible_distribution == "Ubuntu") or (ansible_distribution == "Debian")
 
