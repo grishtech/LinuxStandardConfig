@@ -6,33 +6,15 @@
     group: root
     mode: 644
   when:
-    - ansible_distribution in ["Debian", "Ubuntu"]
+    - (ansible_distribution == "Debian") or ((ansible_distribution == "Ubuntu") and (ansible_distribution_major_version < "22.10"))
   # notify: restart ssh
 
-- name: set ssh config for rhel
+- name: Copy SSH config for Ubuntu distro version 22.10 and greater
   copy:
-    src: files/sshd_config_rhel
-    dest: /etc/ssh/sshd_config
+    src: files/sshd_config
+    dest: /etc/ssh/sshd_config.d/standard.conf
     owner: root
     group: root
     mode: 644
   when:
-    - ansible_distribution in ["AlmaLinux"]
-
-
-#regex based solution later
-# - name: adjust which sftp server to use for RHEL
-#   block:
-#   - name: Correct which sftp-server to use
-#     lineinfile:
-#       path: /etc/ssh/sshd_config
-#       regexp: ^Subsystem(.*)\/usr\/lib\/openssh\/sftp-server*
-#       line: 'Subsystem  sftp  /usr/libexec/openssh/sftp-server'
-#       backrefs: yes
-#     # notify: restart ssh
-#   - name: Add include line
-#     lineinfile:
-#       path: /etc/ssh/sshd_config
-#       line: Include /etc/ssh/sshd_config.d/*.conf
-#       state: present
-#   when: ansible_distribution in ["AlmaLinux"]
+    - (ansible_distribution == "Ubuntu") and (ansible_distribution_major_version >= "22.10")
