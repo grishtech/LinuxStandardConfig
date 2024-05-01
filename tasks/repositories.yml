@@ -32,7 +32,7 @@
     
     - name: Temp - Remove old docker repo
       file:
-        path: /etc/apt/sources.list.d/download_docker_com_linux_ubuntu.list
+        path: /etc/apt/sources.list.d/download_docker_com_linux_{{ ansible_distribution | lower }}.list
         state: absent
     - name: Add the docker repository
       apt_repository:
