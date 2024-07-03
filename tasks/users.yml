@@ -13,7 +13,7 @@
 - name: create david user
   user:
     name: david
-    password: $y$j9T$Lrncm5QQ/dPhwX46SG7wa.$dvY5r2BXWzO/h8jLxxPLdu0ILUuIFfzlkMWbbgGHvn5
+    password: $y$j9T$/TtT2R85h3uFxks8pskdO0$/DDwzmNc4ji8L/3ybsBPkSWBBx4vDnWDzARDO8yT9W3
     update_password: always
     system: no
     state: present
