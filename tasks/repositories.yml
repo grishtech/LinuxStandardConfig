@@ -15,8 +15,8 @@
       yum_repository:
         name: Tailscale-stable
         description: Tailscale stable
-        baseurl: https://pkgs.tailscale.com/stable/rhel/9/$basearch
-        gpgkey: https://pkgs.tailscale.com/stable/rhel/9/repo.gpg
+        baseurl: http://pkgs.tailscale.com/stable/rhel/9/$basearch
+        gpgkey: http://pkgs.tailscale.com/stable/rhel/9/repo.gpg
         gpgcheck: false
         enabled: true
       notify: refresh repos
@@ -24,8 +24,8 @@
       yum_repository:
         name: Docker-CE-Repo
         description: Docker CE Repo
-        baseurl: https://download.docker.com/linux/centos/$releasever/$basearch/stable
-        gpgkey: https://download.docker.com/linux/centos/gpg
+        baseurl: http://download.docker.com/linux/centos/$releasever/$basearch/stable
+        gpgkey: http://download.docker.com/linux/centos/gpg
         gpgcheck: true
         enabled: true
       notify: refresh repos
@@ -39,11 +39,11 @@
   block:
     - name: Tailscale debian signing key
       get_url:
-        url: https://pkgs.tailscale.com/stable/debian/bullseye.noarmor.gpg
+        url: http://pkgs.tailscale.com/stable/debian/bullseye.noarmor.gpg
         dest: /usr/share/keyrings/tailscale-archive-keyring.gpg
     - name: Tailscale debian repository
       apt_repository:
-        repo: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/debian bullseye main"
+        repo: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] http://pkgs.tailscale.com/stable/debian bullseye main"
         state: present
       notify: refresh repos
   when:
@@ -56,17 +56,17 @@
   block:
     - name: Tailscale debian signing key
       get_url:
-        url: https://pkgs.tailscale.com/stable/debian/bookworm.noarmor.gpg
+        url: http://pkgs.tailscale.com/stable/debian/bookworm.noarmor.gpg
         dest: /usr/share/keyrings/tailscale-archive-keyring.gpg
     - name: Tailscale debian repository
       apt_repository:
-        repo: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/debian bookworm main"
+        repo: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] http://pkgs.tailscale.com/stable/debian bookworm main"
         state: present
       notify: refresh repos
 
     - name: Docker signing key download
       get_url:
-        url: https://download.docker.com/linux/debian/gpg
+        url: http://download.docker.com/linux/debian/gpg
         dest: /usr/share/keyrings/docker
         mode: '0664'
     - name: Temp delete the key
@@ -79,7 +79,7 @@
         creates: /usr/share/keyrings/docker.gpg
     - name: Docker Repo for Debian 12
       apt_repository:
-        repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/debian bookworm stable"
+        repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.gpg] http://download.docker.com/linux/debian bookworm stable"
         state: present
       ignore_errors: yes
       notify: refresh repos
@@ -93,18 +93,18 @@
     #tailscale
     - name: Tailscale Ubuntu signing key
       get_url:
-        url: https://pkgs.tailscale.com/stable/ubuntu/jammy.noarmor.gpg
+        url: http://pkgs.tailscale.com/stable/ubuntu/jammy.noarmor.gpg
         dest: /usr/share/keyrings/tailscale-archive-keyring.gpg
     - name: Tailscale Ubuntu repository
       apt_repository:
-        repo: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/ubuntu/ jammy main"
+        repo: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] http://pkgs.tailscale.com/stable/ubuntu/ jammy main"
         state: present
       notify: refresh repos
     
     #docker engine
     - name: Docker signing key download
       get_url:
-        url: https://download.docker.com/linux/ubuntu/gpg
+        url: http://download.docker.com/linux/ubuntu/gpg
         dest: /usr/share/keyrings/docker
         mode: '0664'
     - name: Temp delete the key
@@ -117,7 +117,7 @@
         creates: /usr/share/keyrings/docker.gpg
     - name: Add the Docker repo
       apt_repository:
-        repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu jammy stable"
+        repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.gpg] http://download.docker.com/linux/ubuntu jammy stable"
         state: present
       ignore_errors: yes
       notify: refresh repos
