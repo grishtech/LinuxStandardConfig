@@ -1,0 +1,8 @@
+- name: Notify Ansible Monitoring of a successful playbook execution
+  uri:
+    url: https://api.grish.io/ansibleresult/{{ inventory_hostname_short }}
+    method: PUT
+    headers:
+      hostname: "{{ inventory_hostname_short }}"
+      ipaddress: "test"
+      collectiontime: "test"

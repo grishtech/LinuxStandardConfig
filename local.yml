@@ -25,5 +25,6 @@
       - import_tasks: tasks/cron.yml
       - import_tasks: tasks/bashconfig.yml
       #- import_tasks: tasks/remotemanagment.yml
+      - import_tasks: tasks/ansible-reporting.yml
   handlers:
    - import_tasks: handlers/handlers.yml
