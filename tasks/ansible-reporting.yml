@@ -3,6 +3,7 @@
     url: https://api.grish.io/ansibleresult/{{ inventory_hostname_short }}
     method: PUT
     headers:
+      Content-Type: application/json
       hostname: "{{ inventory_hostname_short }}"
       ipaddress: "test"
       collectiontime: "test"
