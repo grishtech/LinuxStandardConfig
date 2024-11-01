@@ -13,6 +13,7 @@
       - libfido2-dev
       - zip
       - unzip
+      - rsync
   ignore_errors: yes
 
 - name: Install Guest tools if virtualized(KVM)
