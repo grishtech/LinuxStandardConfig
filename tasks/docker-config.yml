@@ -1,0 +1,7 @@
+- name: Set registry pull through cache if local
+  blockinfile:
+    path: /etc/docker/daemon.json
+    block: '{
+  "registry-mirrors": ["https://images.grish.io"]
+}'
+  notify: Reload Docker

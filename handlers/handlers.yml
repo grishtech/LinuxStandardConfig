@@ -13,4 +13,9 @@
   systemd:
     name: tailscale
     state: started
-    enable: true  
+    enable: true
+
+- name: Reload Docker
+  systemd:
+    name: docker
+    state: reloaded
