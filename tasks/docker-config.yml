@@ -1,10 +1,10 @@
 - name: Set registry pull through cache if local
-  blockinfile:
-    path: /etc/docker/daemon.json
-    create: true
-    marker: "\"// {mark} ANSIBLE MANAGED BLOCK\":"
-    block: |
-      {
-        "registry-mirrors": ["https://images.grish.io"]
-      }
+  copy:
+    src: files/docker-daemon-config
+    dest: /etc/docker/daemon.json
+    owner: root
+    group: root
+    mode: 644
+  when:
+    - ansible_distribution in ["Debian", "Ubuntu"]
   notify: Reload Docker
