@@ -1,6 +1,6 @@
 - name: Set registry pull through cache if local
   copy:
-    src: files/docker-daemon-config
+    src: files/docker-daemon-config.json
     dest: /etc/docker/daemon.json
     owner: root
     group: root
