@@ -11,5 +11,5 @@
     mode: 644
   when:
     - ansible_distribution in ["Debian", "Ubuntu"]
-    - network in ['10.50.0.0']
+    - default_ipv4.network in ['10.50.0.0']
   notify: Reload Docker
