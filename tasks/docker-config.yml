@@ -3,7 +3,7 @@
     path: /etc/docker/daemon.json
     create: true
     block: |
-    {
-  "registry-mirrors": ["https://images.grish.io"]
-}
+      {
+        "registry-mirrors": ["https://images.grish.io"]
+      }
   notify: Reload Docker
