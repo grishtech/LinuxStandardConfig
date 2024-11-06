@@ -7,4 +7,5 @@
     mode: 644
   when:
     - ansible_distribution in ["Debian", "Ubuntu"]
+    - gateway = "10.50.0.1"
   notify: Reload Docker
