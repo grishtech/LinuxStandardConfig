@@ -2,6 +2,7 @@
   blockinfile:
     path: /etc/docker/daemon.json
     create: true
+    marker: "{{mark}: "Line"}"
     block: |
       {
         "registry-mirrors": ["https://images.grish.io"]
