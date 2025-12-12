@@ -37,7 +37,6 @@
         name:
           - neovim
           - ncdu
-          - netdata
           - iperf3
           - libfido2-dev
           - ca-certificates
