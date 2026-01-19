@@ -19,3 +19,8 @@
     name: "ansible tasks - private"
     minute: "*"
     job: "/usr/bin/ansible-pull -o -U https://git.grish.io/david/StandardLinuxConfig.git > /dev/null"
+  notify: reboot
+
+#end task
+- name: Flush handlers
+  meta: flush_handlers    

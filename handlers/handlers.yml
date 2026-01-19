@@ -16,5 +16,8 @@
     enable: true
 
 - name: reboot
-  reboot:
-    reboot_timeout: 0
+  ansible.builtin.shell: "sleep 2 && /sbin/reboot"
+  async: 1
+  poll: 0
+  ignore_errors: true
+  changed_when: true
