@@ -10,14 +10,14 @@
   
   tasks:
       - import_tasks: tasks/cron.yml
-      # - import_tasks: tasks/scripts.yml
-      # - import_tasks: tasks/repositories.yml
-      # - import_tasks: tasks/packages.yml
-      # - import_tasks: tasks/services.yml
-      # - import_tasks: tasks/users.yml
-      # - import_tasks: tasks/ssh-keys.yml
-      # - import_tasks: tasks/security-defaults.yml
-      # - import_tasks: tasks/bashconfig.yml
+      - import_tasks: tasks/scripts.yml
+      - import_tasks: tasks/repositories.yml
+      - import_tasks: tasks/packages.yml
+      - import_tasks: tasks/services.yml
+      - import_tasks: tasks/users.yml
+      - import_tasks: tasks/ssh-keys.yml
+      - import_tasks: tasks/security-defaults.yml
+      - import_tasks: tasks/bashconfig.yml
       #- import_tasks: tasks/remotemanagment.yml
   handlers:
    - import_tasks: handlers/handlers.yml
