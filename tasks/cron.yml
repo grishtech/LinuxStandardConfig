@@ -18,4 +18,4 @@
     user: ansible
     name: "ansible tasks - private"
     minute: "*"
-    job: "/usr/bin/ansible-pull -o -U https://git.grish.io/david/StandardLinuxConfig.git > /dev/null"
+    job: "/usr/bin/ansible-pull -o -U https://git.grish.io/david/StandardLinuxConfig-Internal.git > /dev/null"
