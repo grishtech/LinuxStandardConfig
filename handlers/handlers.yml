@@ -13,4 +13,8 @@
   systemd:
     name: tailscale
     state: started
-    enable: true  
+    enable: true
+
+- name: reboot
+  reboot:
+    reboot_timeout: 0
