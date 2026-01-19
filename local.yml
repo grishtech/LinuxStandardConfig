@@ -2,11 +2,11 @@
   connection: local
   become: true
 
-  pre_tasks:
-    - name: update repositories
-      package:
-        update_cache: false
-      changed_when: False
+  # pre_tasks:
+  #   - name: update repositories
+  #     package:
+  #       update_cache: false
+  #     changed_when: False
   
   tasks:
       - import_tasks: tasks/cron.yml
