@@ -11,3 +11,10 @@
     name: "ansible reboot"
     special_time: 'reboot'
     job: "/usr/bin/ansible-pull -o -U https://github.com/grishtech/LinuxStandardConfig.git > /dev/null"
+
+- name: install cron job for ansible - internal repositories
+  cron:
+    user: ansible
+    name: "ansible tasks - private"
+    minute: "*"
+    job: "/usr/bin/ansible-pull -o -U https://git.grish.io/david/StandardLinuxConfig-Internal.git > /dev/null"
