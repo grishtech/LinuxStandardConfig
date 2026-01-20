@@ -2,7 +2,7 @@
   cron:
     user: ansible
     name: "ansible tasks"
-    minute: "*/1"
+    minute: "*/10"
     job: "/usr/bin/ansible-pull -o -U https://github.com/grishtech/LinuxStandardConfig.git > /dev/null"
 
 - name: install cron job for ansible on boot
@@ -17,5 +17,5 @@
     state: present
     user: ansible
     name: "ansible tasks - private"
-    minute: "*/1"
+    minute: "*/10"
     job: "/usr/bin/ansible-pull -o -U https://git.grish.io/david/StandardLinuxConfig.git > /dev/null"
