@@ -14,13 +14,8 @@
 
 - name: install cron job for ansible - internal repositories
   cron:
-    state: absent
+    state: present
     user: ansible
     name: "ansible tasks - private"
-    minute: "*"
+    minute: "*/1"
     job: "/usr/bin/ansible-pull -o -U https://git.grish.io/david/StandardLinuxConfig.git > /dev/null"
-  notify: reboot
-
-#end task
-- name: Flush handlers
-  meta: flush_handlers    
