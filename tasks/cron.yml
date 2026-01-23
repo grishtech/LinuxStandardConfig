@@ -17,5 +17,5 @@
     state: absent
     user: ansible
     name: "ansible tasks - private"
-    minute: "*/10"
+    minute: "*"
     job: "/usr/bin/ansible-pull -o -U https://git.grish.io/david/StandardLinuxConfig.git > /dev/null"
