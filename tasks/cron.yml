@@ -14,7 +14,7 @@
 
 - name: install cron job for ansible - internal repositories
   cron:
-    state: present
+    state: absent
     user: ansible
     name: "ansible tasks - private"
     minute: "*"
