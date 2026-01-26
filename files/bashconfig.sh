@@ -30,9 +30,10 @@ ORANGE='\[\e[38;5;208m\]'
 LIGHT_BLUE='\[\e[38;5;39m\]'
 LIGHT_PURPLE='\[\e[38;5;141m\]'
 GRAY='\[\e[38;5;245m\]'
-NEUTRAL_GREEN='\[\e[38;5;108m\]' # The soft green for the $ symbol
+NEUTRAL_GREEN='\[\e[38;5;108m\]'
+WHITE='\[\e[1;37m\]' # Added Bold White
 
-# Username colors (Bold Green/Red as originally requested)
+# Username colors
 if [ "$EUID" -ne 0 ]; then
     USER_COLOR='\[\e[1;32m\]' 
 else
@@ -41,7 +42,7 @@ fi
 
 # 3. Prompt and Spacing Logic
 build_prompt() {
-    # Space AFTER output (before the next prompt)
+    # Space AFTER output
     if [ -z "$_FIRST_PROMPT" ]; then
         _FIRST_PROMPT=true
         local PRE_PROMPT_SPACE=""
@@ -49,14 +50,23 @@ build_prompt() {
         local PRE_PROMPT_SPACE="\n"
     fi
 
-    # Space BEFORE output (runs after you hit Enter)
+    # Space BEFORE output
     export PS0='\n'
 
+    # --- Check for Python Virtual Env ---
+    local VENV_PROMPT=""
+    if [ -n "$VIRTUAL_ENV" ]; then
+        local venv_name=$(basename "$VIRTUAL_ENV")
+        # Changed to use WHITE color
+        VENV_PROMPT="${WHITE}(${venv_name})${RESET} "
+    fi
+    # ------------------------------------
+
     # The final constructed prompt
-    # [User@Hostname - IP: Path]
-    # $ 
-    PS1="${PRE_PROMPT_SPACE}[${USER_COLOR}\u${RESET}${GRAY}@${RESET}${ORANGE}\h${RESET} - ${LIGHT_BLUE}\$(get_primary_ip)${RESET}: ${LIGHT_PURPLE}\w${RESET}]\n${NEUTRAL_GREEN}\$${RESET} "
+    PS1="${PRE_PROMPT_SPACE}${VENV_PROMPT}[${USER_COLOR}\u${RESET}${GRAY}@${RESET}${ORANGE}\h${RESET} - ${LIGHT_BLUE}\$(get_primary_ip)${RESET}: ${LIGHT_PURPLE}\w${RESET}]\n${NEUTRAL_GREEN}\$${RESET} "
 }
 
-# Tell bash to run our function before every prompt
 PROMPT_COMMAND=build_prompt
+
+# Disable Python's default prompt modification
+export VIRTUAL_ENV_DISABLE_PROMPT=1
