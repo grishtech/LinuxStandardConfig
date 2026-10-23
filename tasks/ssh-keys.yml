@@ -3,7 +3,7 @@
     user: david
     state: present
     key: '{{ item }}'
-    exclusive: True
+    exclusive: false
   with_file: public_keys/david
 
 - name: add ssh keys for root
@@ -11,7 +11,7 @@
     user: root
     state: present
     key: '{{ item }}'
-    exclusive: True
+    exclusive: false
   with_file: public_keys/david
 
 - name: add ssh keys for ansible
@@ -19,5 +19,5 @@
     user: ansible
     state: present
     key: '{{ item }}'
-    exclusive: True
-  with_file: public_keys/ansible  
+    exclusive: false
+  with_file: public_keys/ansible
