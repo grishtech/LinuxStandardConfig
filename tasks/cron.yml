@@ -1,16 +1,17 @@
+# Spread repository pulls across servers with a random delay of up to five minutes.
 - name: install cron job for ansible
   cron:
     user: ansible
     name: "ansible tasks"
     minute: "*/10"
-    job: "/usr/bin/ansible-pull -o -U https://github.com/grishtech/LinuxStandardConfig.git > /dev/null"
+    job: "/usr/bin/ansible-pull -o --sleep 300 -U https://github.com/grishtech/LinuxStandardConfig.git > /dev/null"
 
 - name: install cron job for ansible on boot
   cron:
     user: ansible
     name: "ansible reboot"
     special_time: 'reboot'
-    job: "/usr/bin/ansible-pull -o -U https://github.com/grishtech/LinuxStandardConfig.git > /dev/null"
+    job: "/usr/bin/ansible-pull -o --sleep 300 -U https://github.com/grishtech/LinuxStandardConfig.git > /dev/null"
 
 - name: install cron job for ansible - internal repositories
   cron:
