@@ -19,4 +19,4 @@
       enabled: true #It does not need to be started because it's a socket and not a service
   # - name: Adjust Cockpit authentication settings
   when:
-    - ansible_distribution in ["AlmaLinux"]
+    - ansible_facts['distribution'] in ["AlmaLinux"]

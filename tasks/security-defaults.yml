@@ -6,7 +6,7 @@
     group: root
     mode: 644
   when:
-    - (ansible_distribution == "Debian") or ((ansible_distribution == "Ubuntu") and (ansible_distribution_major_version < "22.10"))
+    - (ansible_facts['distribution'] == "Debian") or ((ansible_facts['distribution'] == "Ubuntu") and (ansible_facts['distribution_major_version'] < "22.10"))
   # notify: restart ssh
 
 - name: Copy SSH config for Ubuntu distro version 22.10 and greater
@@ -17,4 +17,4 @@
     group: root
     mode: 644
   when:
-    - (ansible_distribution == "Ubuntu") and (ansible_distribution_major_version >= "22.10")
+    - (ansible_facts['distribution'] == "Ubuntu") and (ansible_facts['distribution_major_version'] >= "22.10")

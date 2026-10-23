@@ -20,4 +20,4 @@
 #     line: '. /etc/profile.d/bashconfig.sh'
 #   ignore_errors: yes
 #   when:
-#     - ansible_distribution in ["AlmaLinux"]
+#     - ansible_facts['distribution'] in ["AlmaLinux"]
