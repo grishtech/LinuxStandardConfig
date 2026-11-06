@@ -29,7 +29,7 @@
     user: ansible
     name: "ansible tasks - host monitoring"
     minute: "*/30"
-    job: '/usr/bin/flock -n "$HOME/.ansible-pull-monitoring.lock" /usr/bin/ansible-pull -o --sleep 300 -d "$HOME/.ansible/pull-monitoring" -U https://git.grish.io/david/LinuxHostMonitoring.git > /dev/null'
+    job: '/usr/bin/flock -n "$HOME/.ansible-pull-monitoring.lock" /usr/bin/ansible-pull -o --sleep 300 -d "$HOME/.ansible/pull-monitoring" -C main -U https://git.grish.io/david/LinuxHostMonitoring.git > /dev/null'
 
 - name: install daily cron job for host monitoring
   cron:
@@ -37,14 +37,14 @@
     name: "ansible host monitoring - daily"
     minute: "17"
     hour: "4"
-    job: '/usr/bin/flock -n "$HOME/.ansible-pull-monitoring.lock" /usr/bin/ansible-pull --sleep 300 -d "$HOME/.ansible/pull-monitoring" -U https://git.grish.io/david/LinuxHostMonitoring.git > /dev/null'
+    job: '/usr/bin/flock -n "$HOME/.ansible-pull-monitoring.lock" /usr/bin/ansible-pull --sleep 300 -d "$HOME/.ansible/pull-monitoring" -C main -U https://git.grish.io/david/LinuxHostMonitoring.git > /dev/null'
 
 - name: install cron job for host monitoring on boot
   cron:
     user: ansible
     name: "ansible host monitoring - reboot"
     special_time: 'reboot'
-    job: '/usr/bin/flock -n "$HOME/.ansible-pull-monitoring.lock" /usr/bin/ansible-pull --sleep 300 -d "$HOME/.ansible/pull-monitoring" -U https://git.grish.io/david/LinuxHostMonitoring.git > /dev/null'
+    job: '/usr/bin/flock -n "$HOME/.ansible-pull-monitoring.lock" /usr/bin/ansible-pull --sleep 300 -d "$HOME/.ansible/pull-monitoring" -C main -U https://git.grish.io/david/LinuxHostMonitoring.git > /dev/null'
 
 - name: install cron job for ansible - internal repositories
   cron:
